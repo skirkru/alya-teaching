@@ -16,7 +16,7 @@ final class NotificationTest extends TestCase
         $mockEmailHandler->expects($this->once())
                          ->method('sendNotification');
                          
-        $mockSmsHandler->expects($this->once())
+        $mockSmsHandler->expects($this->never())
                        ->method('sendNotification');
 
 
@@ -30,5 +30,26 @@ final class NotificationTest extends TestCase
         $notifier->doNotify($user, "User");
 
     }
+
+    public function testSendFromPush(): void
+    {
+        
+        $user = new User("User", "user@bogdan.com", 74361892221);
+        
+        $mockPushHandler = $this->createMock(INotificationHandler::class);
+
+        $mockPushHandler->expects($this->once())
+                         ->method('sendNotification');
+
+        $user->setNotificationPreference(User::NOTIFICATION_PREFER_PUSH);
+
+        $notifier = new NotificationDispatcher([
+            User::NOTIFICATION_PREFER_PUSH => $mockPushHandler,
+        ]);
+
+        $notifier->doNotify($user, "User");
+
+    }
+
 }
 

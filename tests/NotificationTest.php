@@ -16,7 +16,7 @@ final class NotificationTest extends TestCase
         $mockEmailHandler->expects($this->once())
                          ->method('sendNotification');
                          
-        $mockSmsHandler->expects($this->never())
+        $mockSmsHandler->expects($this->once())
                        ->method('sendNotification');
 
 

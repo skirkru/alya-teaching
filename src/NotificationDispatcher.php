@@ -5,6 +5,7 @@ class User {
     const NOTIFICATION_PREFER_EMAIL = 1;
     const NOTIFICATION_PREFER_SMS = 2;
     const NOTIFICATION_PREFER_WHATSAPP = 3;
+    const NOTIFICATION_PREFER_PUSH = 4;
 
     private string $name = "";
     private string $email = "";

@@ -21,6 +21,6 @@ jobs:
       - name: Print PHP version
         run: echo ${{ steps.setup-php.outputs.php-version }}
       - name: Test
-        run: phpunit ./tests/NotificationTest.php
+        run: phpunit tests/NotificationTest.php
       
       - run: echo "🍏 This job's status is ${{ job.status }}."

@@ -14,10 +14,13 @@ jobs:
         with:
             php-version: '8.3'
             # im not using composer
-            tools: none
+            tools: phpunit
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            
       - name: Print PHP version
         run: echo ${{ steps.setup-php.outputs.php-version }}
       - name: Test
-        run: php ./phpunit.phar ./tests/NotificationTest.php
+        run: phpunit ./tests/NotificationTest.php
       
       - run: echo "🍏 This job's status is ${{ job.status }}."

@@ -1,0 +1,23 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    # PHP 8.3 on ubuntu-latest ok
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Setup PHP Action
+        uses: shivammathur/setup-php@2.34.0
+        with:
+            php-version: '8.3'
+            # im not using composer
+            tools: none
+      - name: Print PHP version
+        run: echo ${{ steps.setup-php.outputs.php-version }}
+      - name: Test
+        run: php phpunit.phar ./tests/NotificationTest.php
+      
+      - run: echo "🍏 This job's status is ${{ job.status }}."

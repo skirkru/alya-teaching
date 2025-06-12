@@ -17,6 +17,9 @@ jobs:
             tools: phpunit
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: What is current work dir?
+        run: |
+          ls -la
             
       - name: Print PHP version
         run: echo ${{ steps.setup-php.outputs.php-version }}
